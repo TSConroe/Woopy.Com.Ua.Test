@@ -13,6 +13,7 @@ import java.util.Random;
 public class MainTest {
 
     public WebDriver driver;
+    final int CountOfTestSale =3;
     @Test
     public void testTitle() {
         driver.get("https://www.woopy.com.ua/");
@@ -37,15 +38,17 @@ public class MainTest {
     public void SalePriceCheck() {
         driver.get("https://www.woopy.com.ua/index.php/component/virtuemart/view/category/virtuemart_category_id/8");
         List<WebElement> elements = driver.findElements(By.xpath("//*[@class=\'product-readmore\']//a"));
-        for(WebElement ele : elements) {
+        for (WebElement ele : elements) {
 
-         //   System.out.println(ele.getAttribute("href"));
+            //   System.out.println(ele.getAttribute("href"));
         }
-             Random rand = new Random();
+
+        for (int i; i <= CountOfTestSale; i++)
+        {
+        Random rand = new Random();
         WebElement randomElement = elements.get(rand.nextInt(elements.size()));
         System.out.println(randomElement.getAttribute("href"));
-        System.out.println(randomElement.getAttribute("href"));
-        System.out.println(randomElement.getAttribute("href"));
+            System.out.println(ele.getAttribute("href"));
         }
 
 
