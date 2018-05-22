@@ -60,7 +60,17 @@ public class MainTest {
         girlsPage.Navigate(url);
         driver.get("https://www.woopy.com.ua/index.php/component/virtuemart/view/category/virtuemart_category_id/7");
         girlsPage.ClearFilter();
-        girlsPage.OpenAllProduct();
+        Assert.assertTrue(girlsPage.OpenAllProduct());
+
+    }
+    @Test
+    public void BoysPriceCheck() {
+        BoysPage boysPage = new BoysPage(this.driver);
+        boysPage.Navigate(url);
+        driver.get("https://www.woopy.com.ua/index.php/component/virtuemart/view/category/virtuemart_category_id/6");
+        boysPage.ClearFilter();
+        boysPage.OpenAllProduct();
+
 
     }
 
