@@ -12,28 +12,38 @@ import java.util.List;
 
 
 
-public class BoysPage  {
+public class BoysPage {
 
     private WebDriver driver;
     String url = "https://www.woopy.com.ua";
 
-    @FindBy(css ="#wrapper > div > div.catalog-menu > ul > li:nth-child(1) > a")
+    @FindBy(css = "#wrapper > div > div.catalog-menu > ul > li:nth-child(1) > a")
     public WebElement GirlsLink;
 
-    @FindBy(xpath ="//*[@id=\"main\"]//div[3]/a")
+    @FindBy(xpath = "//*[@id=\"main\"]//div[3]/a")
     public WebElement ClearFilter;
 
-    @FindBy(xpath ="//*[@name=\"category_19\"]")
+    // @FindBy(xpath ="//*[@id=\"form_function\"]/div/div[1]/div[2]/label/div/div")
+
+    @FindBy(css = "#form_function > div > div:nth-child(2) > div:nth-child(2) > label > div")
     public WebElement ShoesCheckBox;
 
-    @FindBy(css ="#main > div.content > div.category-view > div.more-link-prod > form > a\n")
+    @FindBy(css = "#form_function > div > div:nth-child(2) > div:nth-child(3) > label > div")
+    public WebElement SneakersCheckBox;
+
+    @FindBy(css = "#main > div.content > div.category-view > div.more-link-prod > form > a")
     public WebElement ShowMoreButton;
-    @FindBy(xpath ="//*[@class=\"product-title\"]//a[1]")
+    @FindBy(xpath = "//*[@class=\"product-title\"]//a[1]")
     public List<WebElement> productName;
+    @FindBy(xpath = "//*[@class=\"page-nav\"]//li")
+    public List<WebElement> pageCount;
 
     public List<WebElement> orederNumber;
 
-    public BoysPage (WebDriver browser) {
+    //@FindBy(xpath ="//*[@class=\"product-title\"]//a[1]")
+    public List<WebElement> firstproductName;
+
+    public BoysPage(WebDriver browser) {
         this.driver = browser;
         //  this.driver.manage().window().fullscreen();
         PageFactory.initElements(browser, this);
@@ -41,23 +51,81 @@ public class BoysPage  {
 
     }
 
-    public void Navigate(String Pageurl)
-    {
+    public void Navigate(String Pageurl) {
         this.driver.navigate().to(this.url);
     }
 
 
-    public void ClearFilter()
-    {
+    public void ClearFilter() {
         ClearFilter.click();
     }
 
-    public void СhoiceFootwearType()
-    {
+    public void СhoiceFootwearType() {
         ShoesCheckBox.click();
         ShoesCheckBox.submit();
 
     }
+
+    public List<WebElement> CountFootwer() {
+
+        firstproductName = driver.findElements(By.xpath("//*[@class=\"product-title\"]//a"));
+        System.out.println(firstproductName.size());
+    for (int i=0; i<pageCount.size()-1; i++)
+        {
+
+            firstproductName.addAll( driver.findElements(By.xpath("//*[@class=\"product-title\"]//a")));
+            ShowMoreButton.click();
+            System.out.println(firstproductName.size());
+
+        }
+
+
+       return firstproductName;
+
+
+    }
+
+
+
+
+
+
+      /*  firstproductName = driver.findElements(By.xpath("//*[@class=\"product-title\"]//a"));
+        firstproductName = driver.findElements(By.xpath("//*[@class=\"product-price\"]"));
+         System.out.println(firstproductName.size());
+        if (ShowMoreButton.isDisplayed()) {
+            ShowMoreButton.click();
+            firstproductName.addAll(driver.findElements(By.xpath("//*[@class=\"product-price\"]")));
+            System.out.println(firstproductName.size());
+
+            for (WebElement w : firstproductName
+                    ) {
+                System.out.println(w);
+
+            }
+
+            }
+
+        }*/
+
+            /*
+    firstproductName.addAll(driver.findElements(By.xpath("//*[@class=\"product-title\"]//a[1]")));
+        if (ShowMoreButton.isDisplayed()) {
+        ShowMoreButton.click();
+        firstproductName = driver.findElements(By.xpath("//*[@class=\"product-title\"]//a[1]"));
+        int t =0;
+        for (WebElement w : firstproductName) {
+            System.out.println(w.getText());
+            System.out.println(" " + t);
+            t++;
+        }
+    }*/
+
+
+
+
+
+
 
     public void OpenAllProduct()
     {
