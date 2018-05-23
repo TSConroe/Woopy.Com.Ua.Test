@@ -51,6 +51,18 @@ public class BoysPage {
 
     }
 
+    public void NexPage() {
+        ShowMoreButton.click();
+
+    }
+
+    public int GetPageCount() {
+
+        List <WebElement> pageCount= driver.findElements(By.xpath("//*[@class=\"page-nav\"]//li"));
+        int count = pageCount.size();
+        return count;
+    }
+
     public void Navigate(String Pageurl) {
         this.driver.navigate().to(this.url);
     }
@@ -61,8 +73,8 @@ public class BoysPage {
     }
 
     public void СhoiceFootwearType() {
-        ShoesCheckBox.click();
-        ShoesCheckBox.submit();
+        SneakersCheckBox.click();
+        SneakersCheckBox.submit();
 
     }
 
@@ -127,7 +139,7 @@ public class BoysPage {
 
 
 
-    public void OpenAllProduct()
+    public void GetNumbersToNotSneakersShoes()
     {
         productName = driver.findElements(By.xpath("//*[@class=\"product-title\"]//a[1]"));
         orederNumber =driver.findElements(By.xpath("//*[@class=\"order-number\"]//span"));
@@ -137,7 +149,7 @@ public class BoysPage {
           //  System.out.println(productName.get(i).getText());
             if (!"КРОССОВКИ".equalsIgnoreCase(productName.get(i).getText()))
 
-                System.out.println(productName.get(i).getText() + "" + orederNumber.get(i).getText());
+                System.out.println(orederNumber.get(i).getText());
 
 
             }
