@@ -89,17 +89,22 @@ public class MainTest {
 
 
 
-
-
-
     @Test
-    public void BoysPriceCheck() {
+    public void BoysShowAllNotSneakersNumbers() {
         BoysPage boysPage = new BoysPage(this.driver);
         boysPage.Navigate(url);
         driver.get("https://www.woopy.com.ua/index.php/component/virtuemart/view/category/virtuemart_category_id/6");
         boysPage.ClearFilter();
         boysPage.СhoiceFootwearType();
-        boysPage.OpenAllProduct();
+         boysPage.GetNumbersToNotSneakersShoes();
+
+        //next pages
+        for (int i = 0; i < boysPage.GetPageCount() - 1; i++) {
+            boysPage.NexPage();
+            boysPage.GetNumbersToNotSneakersShoes();
+
+
+        }
 
 
     }
