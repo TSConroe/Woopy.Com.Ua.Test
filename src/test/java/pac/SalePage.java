@@ -1,6 +1,5 @@
 package pac;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.FindBy;
@@ -15,8 +14,6 @@ public class SalePage {
     private WebDriver driver;
     String url = "https://www.woopy.com.ua/index.php/component/virtuemart/view/category/virtuemart_category_id/8";
 
-    @FindBy(css = "#wrapper > div > div.catalog-menu > ul > li:nth-child(3) > a")
-    public WebElement SaleLink;
 
     @FindBy(className = "old-price")
     public WebElement oldPrice;
@@ -36,9 +33,6 @@ public class SalePage {
         this.driver.navigate().to(this.url);
     }
 
-    public String GetSaleLink() {
-        return SaleLink.getAttribute("href");
-    }
 
     public String[] GetOneProductSaleLink(int count) {
 
@@ -46,8 +40,7 @@ public class SalePage {
         for (int i = 0; i < count; i++) {
             Random rand = new Random();
             WebElement randomElement = elements.get(rand.nextInt(elements.size()));
-            // System.out.println(randomElement.getAttribute("href"));
-            Links[i] = (randomElement.getAttribute("href"));
+                Links[i] = (randomElement.getAttribute("href"));
 
         }
 

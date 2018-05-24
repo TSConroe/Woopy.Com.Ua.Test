@@ -23,10 +23,6 @@ public class BoysPage {
     public WebElement ClearFilter;
 
 
-
-    @FindBy(css = "#form_function > div > div:nth-child(2) > div:nth-child(2) > label > div")
-    public WebElement ShoesCheckBox;
-
     @FindBy(css = "#form_function > div > div:nth-child(2) > div:nth-child(3) > label > div")
     public WebElement SneakersCheckBox;
 
@@ -40,6 +36,7 @@ public class BoysPage {
     @FindBy(xpath = "//*[@class=\"page-nav\"]//li")
     public List<WebElement> pageCount;
 
+    @FindBy(xpath = "//*[@class=\"order-number\"]//span")
     public List<WebElement> orederNumber;
 
 
@@ -71,11 +68,11 @@ public class BoysPage {
     }
 
 
-    public void ClearFilter() {
-        ClearFilter.click();
-    }
+
 
     public void СhoiceFootwearType() {
+
+        ClearFilter.click();
 
         SneakersCheckBox.click();
 
@@ -97,7 +94,7 @@ public class BoysPage {
 
     public List<WebElement> CountFootwer() {
 
-        firstproductName = driver.findElements(By.xpath("//*[@class=\"product-title\"]//a"));
+      //  firstproductName = driver.findElements(By.xpath("//*[@class=\"product-title\"]//a"));
         System.out.println(firstproductName.size());
     for (int i=0; i<pageCount.size()-1; i++)
         {
@@ -116,23 +113,23 @@ public class BoysPage {
 
     public void GetNumbersToNotSneakersShoes()
     {
-        productName = driver.findElements(By.xpath("//*[@class=\"product-title\"]//a[1]"));
-        orederNumber =driver.findElements(By.xpath("//*[@class=\"order-number\"]//span"));
 
         for (int i = 0; i< productName.size(); i++
                 ) {
-          //  System.out.println(productName.get(i).getText());
+
             if (!"КРОССОВКИ".equalsIgnoreCase(productName.get(i).getText()))
 
                 System.out.println(orederNumber.get(i).getText());
 
 
             }
+            if (ShowMoreButton.isDisplayed())
+        ShowMoreButton.click();
         }
 
     public List<String> GetProductList() {
 
-        orederNumber =driver.findElements(By.xpath("//*[@class=\"order-number\"]//span"));
+       // orederNumber =driver.findElements(By.xpath("//*[@class=\"order-number\"]//span"));
         List <String> LinkList = new ArrayList<>();
 
         for (int i = 0; i < orederNumber.size(); i++)
