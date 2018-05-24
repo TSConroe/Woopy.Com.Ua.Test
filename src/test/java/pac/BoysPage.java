@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -30,6 +31,9 @@ public class BoysPage {
 
     @FindBy(css = "#form_function > div > div:nth-child(2) > div:nth-child(3) > label > div")
     public WebElement SneakersCheckBox;
+
+    @FindBy(css = "#form_function > div > div:nth-child(2) > div:nth-child(6) > label > div")
+    public WebElement MoisksCheckBox;
 
     @FindBy(css = "#main > div.content > div.category-view > div.more-link-prod > form > a")
     public WebElement ShowMoreButton;
@@ -73,10 +77,24 @@ public class BoysPage {
     }
 
     public void СhoiceFootwearType() {
+
         SneakersCheckBox.click();
-        SneakersCheckBox.submit();
+
 
     }
+    public void СhoiceMoks( )
+        {
+            ClearFilter.click();
+            MoisksCheckBox.click();
+        }
+        public void СhoiceMoksAndSneakers( ) {
+            ClearFilter.click();
+            MoisksCheckBox.click();
+            SneakersCheckBox.click();
+
+        }
+
+
 
     public List<WebElement> CountFootwer() {
 
@@ -97,48 +115,6 @@ public class BoysPage {
 
     }
 
-
-
-
-
-
-      /*  firstproductName = driver.findElements(By.xpath("//*[@class=\"product-title\"]//a"));
-        firstproductName = driver.findElements(By.xpath("//*[@class=\"product-price\"]"));
-         System.out.println(firstproductName.size());
-        if (ShowMoreButton.isDisplayed()) {
-            ShowMoreButton.click();
-            firstproductName.addAll(driver.findElements(By.xpath("//*[@class=\"product-price\"]")));
-            System.out.println(firstproductName.size());
-
-            for (WebElement w : firstproductName
-                    ) {
-                System.out.println(w);
-
-            }
-
-            }
-
-        }*/
-
-            /*
-    firstproductName.addAll(driver.findElements(By.xpath("//*[@class=\"product-title\"]//a[1]")));
-        if (ShowMoreButton.isDisplayed()) {
-        ShowMoreButton.click();
-        firstproductName = driver.findElements(By.xpath("//*[@class=\"product-title\"]//a[1]"));
-        int t =0;
-        for (WebElement w : firstproductName) {
-            System.out.println(w.getText());
-            System.out.println(" " + t);
-            t++;
-        }
-    }*/
-
-
-
-
-
-
-
     public void GetNumbersToNotSneakersShoes()
     {
         productName = driver.findElements(By.xpath("//*[@class=\"product-title\"]//a[1]"));
@@ -154,20 +130,30 @@ public class BoysPage {
 
             }
         }
-      /*  while (ShowMoreButton.isDisplayed()) {
-              productName = driver.findElements(By.xpath("//*[@class=\"product-title\"]//a[1]"));
-            for (WebElement w: productName
-                    ) {
-                System.out.println(w.getText());
 
-                ShowMoreButton.click();
-}
-            }*/
+    public List<String> GetProductList() {
+
+        orederNumber =driver.findElements(By.xpath("//*[@class=\"order-number\"]//span"));
+        List <String> LinkList = new ArrayList<>();
+
+        for (int i = 0; i < orederNumber.size(); i++)
+        {
+            LinkList.add(orederNumber.get(i).getText());
 
         }
 
+        System.out.println(orederNumber.size() + "from boys page ");
+        return LinkList;
 
 
 
 
+    }
+
+
+
+
+
+
+}
 
