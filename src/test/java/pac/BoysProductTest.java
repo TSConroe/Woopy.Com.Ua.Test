@@ -51,15 +51,21 @@ public class BoysProductTest {
         BoysPage boysPage = new BoysPage(this.driver);
         boysPage.Navigate();
         boysPage.СhoiceFootwearType();
-        List<String> firstShoes = boysPage.GetProductList();
+        int count =0;
 
-        //next pages
-        for (int i = 0; i < boysPage.GetPageCount() - 1; i++) {
-            boysPage.NexPage();
+        List<String> firstShoes = new ArrayList<>();
+
+        if (boysPage.GetPageCount()==0)
+            count =1;
+        else
+            count =boysPage.GetPageCount();
+
+         for (int i = 0; i <count; i++) {
+
             firstShoes.addAll(boysPage.GetProductList());
 
         }
-        System.out.println(firstShoes.size() + "one");
+        System.out.println(firstShoes.size() + " one");
 
 
 // clear
@@ -67,35 +73,44 @@ public class BoysProductTest {
 
         boysPage.СhoiceMoks();
 
-        List<String> secondShoes = boysPage.GetProductList();
+        List<String> secondShoes = new ArrayList<>();
 
-        //next
-        //next pages
-        if (boysPage.GetPageCount() > 0) {
-            for (int i = 0; i < boysPage.GetPageCount() - 1; i++) {
-                boysPage.NexPage();
+        if (boysPage.GetPageCount()==0)
+            count =1;
+        else
+            count =boysPage.GetPageCount();
+
+
+            for (int i = 0; i < count; i++) {
+
                 secondShoes.addAll(boysPage.GetProductList());
 
             }
-        }
-        System.out.println(secondShoes.size() + "two");
+
+        System.out.println(secondShoes.size() + " two");
 
 
-        // clear
+// clear
 
         boysPage.СhoiceMoksAndSneakers();
-        List<String> seconplusfirstdShoes = boysPage.GetProductList();
-        if (boysPage.GetPageCount() > 0) {
-            for (int i = 0; i < boysPage.GetPageCount() - 1; i++) {
-                boysPage.NexPage();
+
+
+        List<String> seconplusfirstdShoes = new ArrayList<>();
+        if (boysPage.GetPageCount()==0)
+            count =1;
+        else
+            count =boysPage.GetPageCount();
+
+            for (int i = 0; i < count; i++) {
+
                 seconplusfirstdShoes.addAll(boysPage.GetProductList());
 
             }
 
 
-        }
 
-        System.out.println(seconplusfirstdShoes.size() + "one+two");
+
+        System.out.println(seconplusfirstdShoes.size() + " one+two");
 
 
         List<String> firstplussecond = new ArrayList<>();

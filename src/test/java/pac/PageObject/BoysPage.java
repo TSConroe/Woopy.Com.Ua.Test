@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,13 +110,23 @@ public class BoysPage {
 
         List<String> LinkList = new ArrayList<>();
 
+
         for (int i = 0; i < orederNumber.size(); i++) {
             LinkList.add(orederNumber.get(i).getText());
+          //  System.out.println(i);
+        }
+        try {
+
+            ShowMoreButton.click();
+
+        } catch (NoSuchElementException e) {
+
 
         }
 
-        System.out.println(orederNumber.size() + "from boys page ");
-        return LinkList;
+
+     //   System.out.println(orederNumber.size() + "from boys page ");
+                return LinkList;
 
     }
 
