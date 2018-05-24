@@ -11,6 +11,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pac.MainPage;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -116,13 +118,90 @@ public class MainTest {
         driver.get("https://www.woopy.com.ua/index.php/component/virtuemart/view/category/virtuemart_category_id/6");
         boysPage.ClearFilter();
         boysPage.СhoiceFootwearType();
+        List<String> firstShoes = boysPage.GetProductList();
 
-         List<WebElement> firstList =boysPage.CountFootwer();
-        for (int i = 0; i < firstList.size(); i++) {
-            System.out.println(firstList.get(i));
+        //next pages
+        for (int i = 0; i < boysPage.GetPageCount() - 1; i++) {
+            boysPage.NexPage();
+            firstShoes.addAll(boysPage.GetProductList());
+
+        }
+        System.out.println(firstShoes.size()+ "one");
+
+
+
+// clear
+
+        boysPage.ClearFilter();
+        boysPage.СhoiceMoks();
+
+        List<String> secondShoes = boysPage.GetProductList();
+
+        //next
+        //next pages
+        if (boysPage.GetPageCount()> 0) {
+            for (int i = 0; i < boysPage.GetPageCount() - 1; i++) {
+                boysPage.NexPage();
+                secondShoes.addAll(boysPage.GetProductList());
+
+            }
+        }
+            System.out.println(secondShoes.size() + "two");
+
+
+        // clear
+        boysPage.ClearFilter();
+        boysPage.СhoiceMoksAndSneakers();
+        List<String> seconplusfirstdShoes = boysPage.GetProductList();
+if (boysPage.GetPageCount()> 0)
+{
+        for (int i = 0; i < boysPage.GetPageCount() - 1; i++) {
+            boysPage.NexPage();
+            seconplusfirstdShoes.addAll(boysPage.GetProductList());
+
+}
+
+
         }
 
-    }
+        System.out.println(seconplusfirstdShoes.size() + "one+two");
+
+
+
+        List<String> firstplussecond = new ArrayList<>();
+        firstplussecond.addAll(secondShoes);
+        firstplussecond.addAll(firstShoes);
+
+        Collections.sort(firstplussecond);
+        Collections.sort(seconplusfirstdShoes);
+
+        if(firstplussecond.size() != seconplusfirstdShoes.size() ) {
+            if (firstplussecond.size() > seconplusfirstdShoes.size()) {
+                int a = firstplussecond.size() - seconplusfirstdShoes.size();
+
+                for (int i = a; i > 0; i--) {
+                    System.out.println(firstplussecond.get(firstplussecond.size() - i));
+                }
+            }
+            if (firstplussecond.size() < seconplusfirstdShoes.size()) {
+                int a = firstplussecond.size() - seconplusfirstdShoes.size();
+
+                for (int i = a; i > 0; i--) {
+                    System.out.println(firstplussecond.get(firstplussecond.size() - i));
+                }
+            }
+        }
+
+
+Assert.assertEquals((firstShoes.size()+secondShoes.size()),seconplusfirstdShoes.size() );
+
+
+
+
+
+        }
+
+
 
 
 
