@@ -1,6 +1,5 @@
 package pac;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,7 +20,7 @@ public class MainTest {
     //Number of products to check
     final int CountOfTestSale = 3;
 
-    String url = "https://www.woopy.com.ua";
+
 
     @BeforeTest
     public void BeforeTest() {
@@ -96,14 +95,12 @@ public class MainTest {
     public void BoysShowAllNotSneakersNumbers() {
         BoysPage boysPage = new BoysPage(this.driver);
         boysPage.Navigate();
-        driver.get("https://www.woopy.com.ua/index.php/component/virtuemart/view/category/virtuemart_category_id/6");
-        boysPage.ClearFilter();
-        boysPage.СhoiceFootwearType();
-        boysPage.GetNumbersToNotSneakersShoes();
 
-        //next pages
-        for (int i = 0; i < boysPage.GetPageCount() - 1; i++) {
-            boysPage.NexPage();
+        boysPage.СhoiceFootwearType();
+
+
+        for (int i = 0; i < boysPage.GetPageCount()-1; i++) {
+
             boysPage.GetNumbersToNotSneakersShoes();
 
 
@@ -117,7 +114,7 @@ public class MainTest {
         BoysPage boysPage = new BoysPage(this.driver);
         boysPage.Navigate();
         driver.get("https://www.woopy.com.ua/index.php/component/virtuemart/view/category/virtuemart_category_id/6");
-        boysPage.ClearFilter();
+
         boysPage.СhoiceFootwearType();
         List<String> firstShoes = boysPage.GetProductList();
 
@@ -132,7 +129,7 @@ public class MainTest {
 
 // clear
 
-        boysPage.ClearFilter();
+
         boysPage.СhoiceMoks();
 
         List<String> secondShoes = boysPage.GetProductList();
@@ -150,7 +147,7 @@ public class MainTest {
 
 
         // clear
-        boysPage.ClearFilter();
+
         boysPage.СhoiceMoksAndSneakers();
         List<String> seconplusfirstdShoes = boysPage.GetProductList();
         if (boysPage.GetPageCount() > 0) {
