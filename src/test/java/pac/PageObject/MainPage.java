@@ -1,4 +1,4 @@
-package pac;
+package pac.PageObject;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;

@@ -1,12 +1,10 @@
-package pac;
+package pac.PageObject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +15,6 @@ public class BoysPage {
 
     private WebDriver driver;
     String url = "https://www.woopy.com.ua";
-
 
     @FindBy(xpath = "//*[@id=\"main\"]//div[3]/a")
     public WebElement ClearFilter;
@@ -92,7 +89,7 @@ public class BoysPage {
 
 
 
-    public List<WebElement> CountFootwer() {
+  /*  public List<WebElement> CountFootwer() {
 
       //  firstproductName = driver.findElements(By.xpath("//*[@class=\"product-title\"]//a"));
         System.out.println(firstproductName.size());
@@ -109,7 +106,7 @@ public class BoysPage {
        return firstproductName;
 
 
-    }
+    }*/
 
     public void GetNumbersToNotSneakersShoes()
     {
