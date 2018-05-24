@@ -17,7 +17,7 @@ public class MainPage  {
 
     }
 
-    public void Navigate(String url)
+    public void Navigate()
     {
         this.driver.navigate().to(this.url);
     }

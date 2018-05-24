@@ -1,5 +1,6 @@
 package pac;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.FindBy;
@@ -9,48 +10,55 @@ import java.util.List;
 import java.util.Random;
 
 
-public class SalePage  {
+public class SalePage {
 
     private WebDriver driver;
-    String url = "https://www.woopy.com.ua";
+    String url = "https://www.woopy.com.ua/index.php/component/virtuemart/view/category/virtuemart_category_id/8";
 
-    @FindBy(css ="#wrapper > div > div.catalog-menu > ul > li:nth-child(3) > a")
+    @FindBy(css = "#wrapper > div > div.catalog-menu > ul > li:nth-child(3) > a")
     public WebElement SaleLink;
 
-    @FindBy(xpath ="//*[@class=\'product-readmore\']//a")
+    @FindBy(className = "old-price")
+    public WebElement oldPrice;
+
+    @FindBy(xpath = "//*[@class=\'product-readmore\']//a")
     List<WebElement> elements;
 
-    public SalePage (WebDriver browser) {
+    public SalePage(WebDriver browser) {
         this.driver = browser;
         this.driver.manage().window().fullscreen();
-        PageFactory.initElements(browser, this);
+        PageFactory.initElements(driver, this);
 
 
     }
 
-    public void Navigate(String Pageurl)
-    {
+    public void Navigate() {
         this.driver.navigate().to(this.url);
     }
 
-    public String GetSaleLink()
-    {
-       return SaleLink.getAttribute("href");
+    public String GetSaleLink() {
+        return SaleLink.getAttribute("href");
     }
 
-    public String[] GetOneProductSaleLink(int count)
-    {
+    public String[] GetOneProductSaleLink(int count) {
 
         String[] Links = new String[count];
-        for (int i=0; i < count; i++) {
+        for (int i = 0; i < count; i++) {
             Random rand = new Random();
             WebElement randomElement = elements.get(rand.nextInt(elements.size()));
-           // System.out.println(randomElement.getAttribute("href"));
+            // System.out.println(randomElement.getAttribute("href"));
             Links[i] = (randomElement.getAttribute("href"));
 
         }
 
         return Links;
+
+
+
+    }
+    public WebElement GetOldPrice ()
+    {
+        return oldPrice;
+
     }
 }
-

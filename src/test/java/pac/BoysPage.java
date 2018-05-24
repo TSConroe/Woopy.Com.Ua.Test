@@ -18,13 +18,11 @@ public class BoysPage {
     private WebDriver driver;
     String url = "https://www.woopy.com.ua";
 
-    @FindBy(css = "#wrapper > div > div.catalog-menu > ul > li:nth-child(1) > a")
-    public WebElement GirlsLink;
 
     @FindBy(xpath = "//*[@id=\"main\"]//div[3]/a")
     public WebElement ClearFilter;
 
-    // @FindBy(xpath ="//*[@id=\"form_function\"]/div/div[1]/div[2]/label/div/div")
+
 
     @FindBy(css = "#form_function > div > div:nth-child(2) > div:nth-child(2) > label > div")
     public WebElement ShoesCheckBox;
@@ -44,12 +42,12 @@ public class BoysPage {
 
     public List<WebElement> orederNumber;
 
-    //@FindBy(xpath ="//*[@class=\"product-title\"]//a[1]")
+
     public List<WebElement> firstproductName;
 
     public BoysPage(WebDriver browser) {
         this.driver = browser;
-        //  this.driver.manage().window().fullscreen();
+          this.driver.manage().window().maximize();
         PageFactory.initElements(browser, this);
 
 
@@ -67,7 +65,8 @@ public class BoysPage {
         return count;
     }
 
-    public void Navigate(String Pageurl) {
+    public void Navigate()
+    {
         this.driver.navigate().to(this.url);
     }
 
