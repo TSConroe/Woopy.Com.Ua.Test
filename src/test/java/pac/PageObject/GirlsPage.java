@@ -1,6 +1,7 @@
 package pac.PageObject;
 
-import org.openqa.selenium.By;
+
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,8 +16,6 @@ public class GirlsPage {
     private WebDriver driver;
     String url = "https://www.woopy.com.ua";
 
-    @FindBy(css = "#wrapper > div > div.catalog-menu > ul > li:nth-child(2) > a")
-    public WebElement GirlsLink;
 
     @FindBy(xpath = "//*[@id=\"main\"]//div[3]/a")
     public WebElement ClearFilter;
@@ -28,18 +27,24 @@ public class GirlsPage {
     public WebElement ShowMoreButton;
 
 
-
+    @FindBy(xpath = "//*[@class=\"product-price\"]")
     List<WebElement> productPrices;
 
+    @FindBy(xpath = "//*[@class=\"page-nav\"]//li")
+    List<WebElement> pageCount;
+
+
     public GirlsPage(WebDriver browser) {
+
         this.driver = browser;
-        //  this.driver.manage().window().fullscreen();
+        this.driver.manage().window().maximize();
         PageFactory.initElements(browser, this);
 
 
     }
 
     public void Navigate() {
+
         this.driver.navigate().to(this.url);
     }
 
@@ -53,7 +58,9 @@ public class GirlsPage {
         ShoesCheckBox.submit();
 
     }
+
     public void NexPage() {
+
         ShowMoreButton.click();
 
     }
@@ -61,26 +68,35 @@ public class GirlsPage {
 
     public int GetPageCount() {
 
-        List <WebElement> pageCount= driver.findElements(By.xpath("//*[@class=\"page-nav\"]//li"));
         int count = pageCount.size();
         return count;
     }
 
     public List<String> OpenAllProduct() {
-        productPrices = driver.findElements(By.xpath("//*[@class=\"product-price\"]"));
 
 
-        List <String> LinkList = new ArrayList<>();
+        List<String> LinkList = new ArrayList<>();
 
-        for (int i = 0; i < productPrices.size(); i++)
-        {
+        for (int i = 0; i < productPrices.size(); i++) {
             LinkList.add(productPrices.get(i).getText());
 
         }
-        return LinkList;
-        }
+        try {
 
+            ShowMoreButton.click();
+
+        } catch (NoSuchElementException e) {
+
+    /*      (ShowMoreButton.isDisplayed()) - cant stop if-cycle
+            So I use try catch
+            Because there are elements in last page which I need to check also
+
+     */
+        }
+        return LinkList;
     }
+
+}
 
 
 

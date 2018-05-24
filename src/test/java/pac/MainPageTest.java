@@ -7,19 +7,12 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+
 import pac.PageObject.*;
 
-public class MainTest {
+public class MainPageTest {
 
     public WebDriver driver;
-
-    //Number of products to check
-    final int CountOfTestSale = 3;
-
-
 
     @BeforeTest
     public void BeforeTest() {
@@ -28,7 +21,6 @@ public class MainTest {
 
 
     }
-
 
     @Test
     public void testTitle() {
@@ -40,22 +32,6 @@ public class MainTest {
     }
 
 
-    @Test
-    public void CheckTreeProductSalePrice() {
-        SalePage salePage = new SalePage(this.driver);
-        salePage.Navigate();
-
-        String[] Links = salePage.GetOneProductSaleLink(CountOfTestSale);
-        for (int i = 0; i < CountOfTestSale; i++) {
-
-            System.out.println(Links[i]);
-            driver.get(Links[i]);
-
-
-            Assert.assertTrue(salePage.GetOldPrice().isDisplayed());
-
-        }
-    }
 
 
     @AfterTest

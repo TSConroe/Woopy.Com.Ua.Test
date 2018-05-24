@@ -6,12 +6,17 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import java.util.List;
-import pac.PageObject.*;
-public class GirlsProductTest {
 
+import pac.PageObject.*;
+
+public class SaleProductTest {
 
     public WebDriver driver;
+
+    //Number of products to check
+    final int CountOfTestSale = 3;
+
+
 
     @BeforeTest
     public void BeforeTest() {
@@ -23,30 +28,26 @@ public class GirlsProductTest {
 
 
     @Test
-    public void GirlsShoesCheck() {
-        GirlsPage girlsPage = new GirlsPage(this.driver);
-        girlsPage.Navigate();
-        girlsPage.ChoiceFootwearType();
+    public void CheckTreeProductSalePrice() {
+        SalePage salePage = new SalePage(this.driver);
+        salePage.Navigate();
 
-        List<String> girlShoes;
-        for (int i = 0; i < girlsPage.GetPageCount(); i++) {
+        String[] Links = salePage.GetOneProductSaleLink(CountOfTestSale);
+        for (int i = 0; i < CountOfTestSale; i++) {
 
-            girlShoes = girlsPage.OpenAllProduct();
-            for (String w : girlShoes
-                    ) {
-                 System.out.println(w);
-                Assert.assertFalse(w.isEmpty());
+            System.out.println(Links[i]);
+            driver.get(Links[i]);
 
-            }
+
+            Assert.assertTrue(salePage.GetOldPrice().isDisplayed());
 
         }
-
     }
+
 
     @AfterTest
     public void AfterTest() {
         driver.close();
     }
-
 
 }
