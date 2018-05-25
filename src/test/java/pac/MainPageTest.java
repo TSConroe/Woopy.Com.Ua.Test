@@ -26,8 +26,10 @@ public class MainPageTest {
     public void testTitle() {
         MainPage searchJeansPage = new MainPage(this.driver);
         searchJeansPage.Navigate();
+
         String title = driver.getTitle();
         String expectTitle = "Интернет магазин детской обуви Foksi (Woopy Orthopedic Украина, Minime, Tofino)";
+
         Assert.assertEquals(title, expectTitle);
     }
 

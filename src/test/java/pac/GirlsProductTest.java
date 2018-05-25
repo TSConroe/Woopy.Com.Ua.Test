@@ -21,7 +21,6 @@ public class GirlsProductTest {
         System.setProperty("webdriver.chrome.driver", "C://Chromedriver//chromedriver.exe");
         this.driver = new ChromeDriver();
 
-
     }
 
 
@@ -42,7 +41,7 @@ public class GirlsProductTest {
 
 
          */
-        girlsPage.ChoiceFootwearType(3333);
+        girlsPage.ChoiceFootwearType();
 
         List<String> girlShoes;
         int count = 0;
@@ -56,8 +55,7 @@ public class GirlsProductTest {
             girlShoes = girlsPage.OpenAllProduct();
             for (String w : girlShoes
                     ) {
-                System.out.println(w);
-                Assert.assertFalse(w.isEmpty());
+                Assert.assertTrue(w.matches("^[а-я, 0-9]+.+"));
 
             }
 
