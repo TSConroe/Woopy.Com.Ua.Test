@@ -1,12 +1,12 @@
 package pac.PageObject;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +18,6 @@ public class BoysPage {
 
     @FindBy(xpath = "//*[@id=\"main\"]//div[3]/a")
     public WebElement ClearFilter;
-
-
-    @FindBy(css = "#form_function > div > div:nth-child(2) > div:nth-child(3) > label > div")
-    public WebElement SneakersCheckBox;
-
-    @FindBy(css = "#form_function > div > div:nth-child(2) > div:nth-child(6) > label > div")
-    public WebElement MoisksCheckBox;
 
     @FindBy(css = "#main > div.content > div.category-view > div.more-link-prod > form > a")
     public WebElement ShowMoreButton;
@@ -45,15 +38,11 @@ public class BoysPage {
 
     }
 
-    public void NexPage() {
-        ShowMoreButton.click();
-
-    }
 
     public int GetPageCount() {
 
-        int count = pageCount.size();
-        return count;
+        int countOfPages = pageCount.size();
+        return countOfPages;
     }
 
     public void Navigate() {
@@ -61,32 +50,48 @@ public class BoysPage {
     }
 
 
-    public void СhoiceFootwearType() {
+    public void СhoiceFootwearType(int i) {
+            //Clear
+            ClearFilter.click();
+            //Choice
+            try {
+                WebElement ShoseType = driver.findElement(By.cssSelector("#form_function > div > div:nth-child(2) > div:nth-child(" + i + ") > label > div"));
+                ShoseType.click();
 
-        ClearFilter.click();
+            } catch (NoSuchElementException e) {
 
-        SneakersCheckBox.click();
+                Assert.fail("NoSuchElementException - use correct product index");
 
+            }
 
-    }
-
-    public void СhoiceMoks() {
-        ClearFilter.click();
-        MoisksCheckBox.click();
-    }
-
-    public void СhoiceMoksAndSneakers() {
-        ClearFilter.click();
-        MoisksCheckBox.click();
-        SneakersCheckBox.click();
 
     }
 
+    public void СhoiceFootwearType(int i, int j) {
+        //Clear
+        ClearFilter.click();
+        //Choice
+        try {
+            WebElement ShoseType = driver.findElement(By.cssSelector("#form_function > div > div:nth-child(2) > div:nth-child(" + i + ") > label > div"));
+            ShoseType.click();
+            ShoseType = driver.findElement(By.cssSelector("#form_function > div > div:nth-child(2) > div:nth-child(" + j + ") > label > div"));
+            ShoseType.click();
+
+        } catch (NoSuchElementException e) {
+
+            Assert.fail("NoSuchElementException - use correct product index");
+
+        }
+
+
+    }
 
     public void GetNumbersToNotSneakersShoes() {
 
+        System.out.println("Number of product which have different name: ");
         for (int i = 0; i < productName.size(); i++
                 ) {
+
 
             if (!"КРОССОВКИ".equalsIgnoreCase(productName.get(i).getText()))
 

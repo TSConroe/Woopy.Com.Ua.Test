@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +16,6 @@ public class GirlsPage {
 
     private WebDriver driver;
     String url = "https://www.woopy.com.ua";
-
 
     @FindBy(xpath = "//*[@id=\"main\"]//div[3]/a")
     public WebElement ClearFilter;
@@ -40,7 +38,7 @@ public class GirlsPage {
 
         this.driver = browser;
         this.driver.manage().window().maximize();
-        PageFactory.initElements(browser, this);
+       PageFactory.initElements(browser, this);
 
 
     }
@@ -99,7 +97,7 @@ public class GirlsPage {
 
         } catch (NoSuchElementException e) {
 
-    /*      (ShowMoreButton.isDisplayed()) - cant stop if-cycle
+    /*      ( (if ShowMoreButton.isDisplayed())) - cant stop if-cycle
             So I use try catch
             Because there are elements in last page which I need to check also
 

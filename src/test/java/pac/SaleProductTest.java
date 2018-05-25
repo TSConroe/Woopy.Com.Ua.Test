@@ -35,9 +35,7 @@ public class SaleProductTest {
         String[] Links = salePage.GetOneProductSaleLink(CountOfTestSale);
         for (int i = 0; i < CountOfTestSale; i++) {
 
-            System.out.println(Links[i]);
             driver.get(Links[i]);
-
 
             Assert.assertTrue(salePage.GetOldPrice().isDisplayed());
 

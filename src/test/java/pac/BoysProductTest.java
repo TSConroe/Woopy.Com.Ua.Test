@@ -32,8 +32,7 @@ public class BoysProductTest {
     public void BoysShowAllNotSneakersNumbers() {
         BoysPage boysPage = new BoysPage(this.driver);
         boysPage.Navigate();
-
-        boysPage.СhoiceFootwearType();
+        boysPage.СhoiceFootwearType(3);
 
 
         for (int i = 0; i < boysPage.GetPageCount()-1; i++) {
@@ -50,7 +49,28 @@ public class BoysProductTest {
     public void BoysTwoProductCheck() {
         BoysPage boysPage = new BoysPage(this.driver);
         boysPage.Navigate();
-        boysPage.СhoiceFootwearType();
+      //  boysPage.СhoiceFootwearType();
+
+
+
+
+                /*
+        ChoiceFootwearType  no argument, use TASK filter "кроссовки"
+        ChoiceFootwearType(2) -зимняя обувь
+        ChoiceFootwearType(3) -кроссовки
+        ChoiceFootwearType(4) -босоножки
+        ChoiceFootwearType(5) -демисезонная обувь
+        ChoiceFootwearType(9) -туфли
+        ChoiceFootwearType(6) -мокасины
+        ChoiceFootwearType(7) -школьная обувь
+        ChoiceFootwearType(8) -ортопедические берцы
+
+
+         */
+          boysPage.СhoiceFootwearType(2);
+
+
+
         int count =0;
 
         List<String> firstShoes = new ArrayList<>();
@@ -65,13 +85,10 @@ public class BoysProductTest {
             firstShoes.addAll(boysPage.GetProductList());
 
         }
-        System.out.println(firstShoes.size() + " one");
 
+ // clear
 
-// clear
-
-
-        boysPage.СhoiceMoks();
+        boysPage.СhoiceFootwearType(4);
 
         List<String> secondShoes = new ArrayList<>();
 
@@ -87,12 +104,10 @@ public class BoysProductTest {
 
             }
 
-        System.out.println(secondShoes.size() + " two");
-
 
 // clear
 
-        boysPage.СhoiceMoksAndSneakers();
+        boysPage.СhoiceFootwearType(2,4);
 
 
         List<String> seconplusfirstdShoes = new ArrayList<>();
@@ -110,9 +125,6 @@ public class BoysProductTest {
 
 
 
-        System.out.println(seconplusfirstdShoes.size() + " one+two");
-
-
         List<String> firstplussecond = new ArrayList<>();
         firstplussecond.addAll(secondShoes);
         firstplussecond.addAll(firstShoes);
@@ -123,6 +135,7 @@ public class BoysProductTest {
         if (firstplussecond.size() != seconplusfirstdShoes.size()) {
             if (firstplussecond.size() > seconplusfirstdShoes.size()) {
                 int a = firstplussecond.size() - seconplusfirstdShoes.size();
+                System.out.println("Different product");
 
                 for (int i = a; i > 0; i--) {
                     System.out.println(firstplussecond.get(firstplussecond.size() - i));
